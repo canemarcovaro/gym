@@ -65,6 +65,7 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
     TableRowSorter trs;
     private int filaEditar;
     private int numFila;
+    boolean band = true;
 
     public ControladorClientes(Clientes c, Cliente cl, Entidad en, MenuClientes mc) {
         this.c = c;
@@ -75,7 +76,7 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
         this.mc.btnNuevo.addActionListener(this);
         this.c.btnSubir.addActionListener(this);
         this.mc.txtBuscar.addKeyListener(this);
-        this.mc.jcomboBuscar.addKeyListener(this);
+        //this.mc.jcomboBuscar.addKeyListener(this);
         this.mc.btnMod.addActionListener(this);
         this.c.btnEdit.addActionListener(this);
         this.mc.tabla1.addMouseListener(this);
@@ -93,10 +94,20 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
     }
 
     public void iniciarMenuCliente() throws SQLException {
+        
+        
+        
         mc.setTitle("Menu Clientes");
         mc.setLocationRelativeTo(null);
         mc.setVisible(true);
-        cargarTabla();
+        
+        //Fixed, se incorporó bandera para solucionar problema de Dispose con la Vista MenuClientes...
+        
+        if(band==true){
+            cargarTabla();
+           band=false;
+       }
+        
     }
 
     public void actualizarTabla() {
@@ -330,7 +341,7 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
                 Logger.getLogger(ControladorClientes.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (image1 != null) {
-                Icon icono = new ImageIcon(image1.getImage().getScaledInstance(202, 241, Image.SCALE_DEFAULT));
+                Icon icono = new ImageIcon(image1.getImage().getScaledInstance(250, 300, Image.SCALE_DEFAULT));
 
                 mc.labFoto2.setIcon(icono);
 

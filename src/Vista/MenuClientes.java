@@ -5,6 +5,14 @@
  */
 package Vista;
 
+import com.sun.awt.AWTUtilities;
+import java.awt.Frame;
+import static java.lang.System.exit;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author JorgeA
@@ -14,8 +22,28 @@ public class MenuClientes extends javax.swing.JFrame {
     /**
      * Creates new form MenuClientes
      */
+    int x,y;
     public MenuClientes() {
         initComponents();
+        
+         //Cambiar icono ventana
+        
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/logo.png")).getImage());
+        
+        
+        //Agregar Imagen al frame
+        
+        ((JPanel)getContentPane()).setOpaque(false);
+        ImageIcon uno=new ImageIcon(this.getClass().getResource("/Imagenes/Plantilla_Cliente3.jpg"));
+        JLabel fondo= new JLabel();
+        fondo.setIcon(uno);
+        getLayeredPane().add(fondo,JLayeredPane.FRAME_CONTENT_LAYER);
+        fondo.setBounds(0,0,uno.getIconWidth(),uno.getIconHeight());
+        
+        
+        //Eliminar fondo del frame
+        
+        AWTUtilities.setWindowOpaque(this,false);
     }
 
     /**
@@ -33,15 +61,44 @@ public class MenuClientes extends javax.swing.JFrame {
         btnElim = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jcomboBuscar = new javax.swing.JComboBox<>();
         btnMod = new javax.swing.JButton();
         labFoto2 = new javax.swing.JLabel();
+        b_cerrar = new javax.swing.JButton();
+        b_minimizar = new javax.swing.JButton();
+        mover = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        setUndecorated(true);
 
         tabla1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -73,26 +130,29 @@ public class MenuClientes extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla1);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(10, 56, 617, 102);
-
-        btnNuevo.setText("Nuevo Cliente");
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/b_nCliente.png"))); // NOI18N
+        btnNuevo.setBorder(null);
+        btnNuevo.setBorderPainted(false);
+        btnNuevo.setContentAreaFilled(false);
+        btnNuevo.setDefaultCapable(false);
+        btnNuevo.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/b_nCliente_.png"))); // NOI18N
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNuevo);
-        btnNuevo.setBounds(29, 305, 101, 23);
 
-        btnElim.setText("Eliminar");
+        btnElim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/b_eliminar.png"))); // NOI18N
+        btnElim.setBorder(null);
+        btnElim.setBorderPainted(false);
+        btnElim.setContentAreaFilled(false);
+        btnElim.setDefaultCapable(false);
+        btnElim.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/b_eliminar_press.png"))); // NOI18N
         btnElim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnElimActionPerformed(evt);
             }
         });
-        getContentPane().add(btnElim);
-        btnElim.setBounds(200, 300, 99, 23);
 
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -105,29 +165,118 @@ public class MenuClientes extends javax.swing.JFrame {
                 txtBuscarKeyTyped(evt);
             }
         });
-        getContentPane().add(txtBuscar);
-        txtBuscar.setBounds(84, 239, 92, 20);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Buscar cliente:");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 242, 70, 14);
 
-        jcomboBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "DNI" }));
-        jcomboBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcomboBuscarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jcomboBuscar);
-        jcomboBuscar.setBounds(220, 239, 85, 20);
-
-        btnMod.setText("Modificar");
-        getContentPane().add(btnMod);
-        btnMod.setBounds(350, 300, 98, 23);
+        btnMod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/b_modificar.png"))); // NOI18N
+        btnMod.setBorder(null);
+        btnMod.setBorderPainted(false);
+        btnMod.setContentAreaFilled(false);
+        btnMod.setDefaultCapable(false);
+        btnMod.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/b_modificar_press.png"))); // NOI18N
 
         labFoto2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(labFoto2);
-        labFoto2.setBounds(668, 38, 202, 241);
+
+        b_cerrar.setBorder(null);
+        b_cerrar.setBorderPainted(false);
+        b_cerrar.setContentAreaFilled(false);
+        b_cerrar.setDefaultCapable(false);
+        b_cerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_cerrarActionPerformed(evt);
+            }
+        });
+
+        b_minimizar.setBorder(null);
+        b_minimizar.setBorderPainted(false);
+        b_minimizar.setContentAreaFilled(false);
+        b_minimizar.setDefaultCapable(false);
+        b_minimizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_minimizarActionPerformed(evt);
+            }
+        });
+
+        mover.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
+        mover.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                moverMouseDragged(evt);
+            }
+        });
+        mover.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                moverMousePressed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setText("CLIENTES:");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(mover, javax.swing.GroupLayout.PREFERRED_SIZE, 960, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(b_minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(b_cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addComponent(btnElim, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnMod, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(labFoto2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(0, 140, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(b_minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b_cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mover, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel1)
+                                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(labFoto2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49)))
+                        .addGap(38, 38, 38)
+                        .addComponent(btnMod, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnElim, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -148,10 +297,6 @@ public class MenuClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarKeyPressed
 
-    private void jcomboBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomboBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcomboBuscarActionPerformed
-
     private void tabla1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tabla1MouseClicked
@@ -160,19 +305,43 @@ public class MenuClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnElimActionPerformed
 
+    private void b_cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cerrarActionPerformed
+    this.dispose();
+    }//GEN-LAST:event_b_cerrarActionPerformed
+
+    private void b_minimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_minimizarActionPerformed
+        this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_b_minimizarActionPerformed
+
+    private void moverMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moverMousePressed
+        
+    x = evt.getX();
+    y = evt.getY();
+    
+    }//GEN-LAST:event_moverMousePressed
+
+    private void moverMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moverMouseDragged
+      
+    this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY()-y);
+    
+    }//GEN-LAST:event_moverMouseDragged
+
     /**
      * @param args the command line arguments
      */
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton b_cerrar;
+    private javax.swing.JButton b_minimizar;
     public javax.swing.JButton btnElim;
     public javax.swing.JButton btnMod;
     public javax.swing.JButton btnNuevo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JComboBox<String> jcomboBuscar;
     public javax.swing.JLabel labFoto2;
+    private javax.swing.JLabel mover;
     public javax.swing.JTable tabla1;
     public javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
