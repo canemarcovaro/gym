@@ -7,12 +7,16 @@ package Main;
 
 import Controlador.ControladorClientes;
 import Controlador.ControladorMenu;
+import Controlador.ControladorTarifas;
 import Modelo.Cliente;
 import Modelo.Conexion;
 import Modelo.Entidad;
+import Modelo.EntidadTarifas;
+import Modelo.Tarifa;
 import Vista.Clientes;
 import Vista.Menu;
 import Vista.MenuClientes;
+import Vista.Tarifas;
 
 
 /**
@@ -29,9 +33,12 @@ public class Main {
         Conexion cn = new Conexion();
         Entidad en = new Entidad();
         MenuClientes mc = new MenuClientes();
-        
+        Tarifas tf = new Tarifas();
+        Tarifa ta = new Tarifa();
+        EntidadTarifas et = new EntidadTarifas();
+        ControladorTarifas ct = new ControladorTarifas(tf,et,ta);
         ControladorClientes col = new ControladorClientes(cl,c1,en,mc);
-        ControladorMenu com = new ControladorMenu(col,m);
+        ControladorMenu com = new ControladorMenu(col,m,ct);
         
         com.iniciar();
       

@@ -7,7 +7,6 @@ package Modelo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import Modelo.Entidad;
 import java.awt.image.BufferedImage;

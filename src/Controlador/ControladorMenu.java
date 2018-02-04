@@ -22,11 +22,13 @@ public class ControladorMenu implements ActionListener {
 
     private ControladorClientes cc;
     private Menu m;
-
-    public ControladorMenu(ControladorClientes cc, Menu m) {
+    private ControladorTarifas ct;
+    public ControladorMenu(ControladorClientes cc, Menu m, ControladorTarifas ct) {
         this.cc = cc;
         this.m = m;
         this.m.btnClientes.addActionListener(this);
+        this.m.btnTarifas.addActionListener(this);
+        this.ct = ct;
     }
 
     
@@ -47,6 +49,9 @@ public class ControladorMenu implements ActionListener {
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        if(e.getSource() == m.btnTarifas ){
+            ct.iniciarTarifas();
         }
     }
     public void iniciarVistaMenuCliente() throws SQLException{
