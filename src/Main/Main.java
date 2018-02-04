@@ -10,7 +10,9 @@ import Controlador.ControladorMenu;
 import Controlador.ControladorTarifas;
 import Modelo.Cliente;
 import Modelo.Conexion;
+import Modelo.Cuenta;
 import Modelo.Entidad;
+import Modelo.EntidadCuenta;
 import Modelo.EntidadTarifas;
 import Modelo.Tarifa;
 import Vista.Clientes;
@@ -37,7 +39,9 @@ public class Main {
         Tarifa ta = new Tarifa();
         EntidadTarifas et = new EntidadTarifas();
         ControladorTarifas ct = new ControladorTarifas(tf,et,ta);
-        ControladorClientes col = new ControladorClientes(cl,c1,en,mc);
+        Cuenta cu = new Cuenta();
+        EntidadCuenta ec = new EntidadCuenta();
+        ControladorClientes col = new ControladorClientes(cl,c1,en,mc,cu,et,ec);
         ControladorMenu com = new ControladorMenu(col,m,ct);
         
         com.iniciar();
