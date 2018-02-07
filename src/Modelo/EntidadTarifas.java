@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class EntidadTarifas extends Conexion {
 
-    public boolean registrar(Tarifa t) {
+    public boolean registrar(Tarifa t) throws ClassNotFoundException{
         PreparedStatement ps = null;
         try {
             Connection con = getConect();
@@ -44,6 +44,8 @@ public class EntidadTarifas extends Conexion {
       
 
     }
+    
+              
     public boolean eliminar(Tarifa t) throws ClassNotFoundException {
         PreparedStatement ps = null;
        

@@ -58,86 +58,28 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnClientes = new javax.swing.JButton();
-        btnTarifas = new javax.swing.JButton();
-        btnPagos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaVto = new javax.swing.JTable();
         b_cerrar = new javax.swing.JButton();
         b_minimizar = new javax.swing.JButton();
         move = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        acTabla = new javax.swing.JButton();
+        btnClientes = new javax.swing.JButton();
+        btnTarifas = new javax.swing.JButton();
+        btnPagos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        btnClientes.setBackground(new java.awt.Color(51, 51, 51));
-        btnClientes.setForeground(new java.awt.Color(0, 204, 102));
-        btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/b_clientes.png"))); // NOI18N
-        btnClientes.setBorder(null);
-        btnClientes.setBorderPainted(false);
-        btnClientes.setContentAreaFilled(false);
-        btnClientes.setDefaultCapable(false);
-        btnClientes.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/b_clientes_press.png"))); // NOI18N
-        btnClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClientesActionPerformed(evt);
-            }
-        });
-
-        btnTarifas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/b_tarifas.png"))); // NOI18N
-        btnTarifas.setBorderPainted(false);
-        btnTarifas.setContentAreaFilled(false);
-        btnTarifas.setDefaultCapable(false);
-        btnTarifas.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/b_tarifas_press.png"))); // NOI18N
-
-        btnPagos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/b_cuentas.png"))); // NOI18N
-        btnPagos.setBorder(null);
-        btnPagos.setBorderPainted(false);
-        btnPagos.setContentAreaFilled(false);
-        btnPagos.setDefaultCapable(false);
-        btnPagos.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/b_cuentas_press.png"))); // NOI18N
-
         tablaVto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Nombre", "DNI", "Fecha Vencimineto"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Object.class
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-        });
+        ));
         jScrollPane1.setViewportView(tablaVto);
 
         b_cerrar.setBorder(null);
@@ -175,6 +117,26 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("PROXIMOS VENCIMIENTOS:");
 
+        acTabla.setText("ACTUALIZAR TABLA");
+
+        btnClientes.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnClientes.setText("CLIENTES");
+        btnClientes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClientes.setFocusPainted(false);
+
+        btnTarifas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnTarifas.setText("TARIFAS");
+        btnTarifas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnTarifas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnTarifas.setFocusPainted(false);
+
+        btnPagos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnPagos.setText("PAGOS");
+        btnPagos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnPagos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPagos.setFocusPainted(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -185,19 +147,24 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(b_minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(b_cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(240, 240, 240)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(205, 205, 205)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnPagos)
-                    .addComponent(btnTarifas, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClientes))
-                .addGap(121, 121, 121))
+                    .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTarifas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(114, 114, 114))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(240, 240, 240)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(338, 338, 338)
+                        .addComponent(acTabla)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,28 +175,26 @@ public class Menu extends javax.swing.JFrame {
                         .addGap(6, 6, 6))
                     .addComponent(b_cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(move, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnClientes)
-                        .addGap(84, 84, 84)
-                        .addComponent(btnTarifas)
-                        .addGap(98, 98, 98)
-                        .addComponent(btnPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(94, 94, 94))))
+                        .addGap(33, 33, 33)
+                        .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71)
+                        .addComponent(btnTarifas, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
+                        .addComponent(btnPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(acTabla)
+                .addGap(108, 108, 108))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-       
-    }//GEN-LAST:event_btnClientesActionPerformed
 
     private void b_minimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_minimizarActionPerformed
     
@@ -270,6 +235,7 @@ public class Menu extends javax.swing.JFrame {
      */
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton acTabla;
     private javax.swing.JButton b_cerrar;
     private javax.swing.JButton b_minimizar;
     public javax.swing.JButton btnClientes;

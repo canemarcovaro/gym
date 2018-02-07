@@ -41,6 +41,7 @@ public class ControladorMenu implements ActionListener {
         this.m = m;
         this.m.btnClientes.addActionListener(this);
         this.m.btnTarifas.addActionListener(this);
+        this.m.acTabla.addActionListener(this);
         this.ct = ct;
         this.m.btnPagos.addActionListener(this);
     }
@@ -51,7 +52,27 @@ public class ControladorMenu implements ActionListener {
         m.setLocationRelativeTo(null);
         m.setVisible(true);
         verificarVto();
-        cargarTablaVto();
+        cargarTablaVto(modelo);
+     
+
+    }
+    
+    public void limpiarTabla() {
+
+        int sizeModel = m.tablaVto.getRowCount();
+
+        for (int i = 0; i < sizeModel; i++) {
+            m.tablaVto.removeRowSelectionInterval(0, sizeModel - 1);
+        }
+
+    }
+
+    public void actualizarTabla() {
+
+        DefaultTableModel a = new DefaultTableModel();
+        limpiarTabla();
+        verificarVto();
+        cargarTablaVto(a);
 
     }
 
@@ -127,11 +148,11 @@ public void verificarVto() {
 
     }
 
-    public void cargarTablaVto() {
+    public void cargarTablaVto(DefaultTableModel table) {
 
         try {
             PreparedStatement ps = null;
-            m.tablaVto.setModel(modelo);
+            m.tablaVto.setModel(table);
 
             ResultSet rs = null;
             Conexion conn = new Conexion();
@@ -164,10 +185,10 @@ public void verificarVto() {
                 Logger.getLogger(ControladorMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            modelo.addColumn("DNI");
-            modelo.addColumn("NOMBRE");
-            modelo.addColumn("FECHA VENCIMIENTO");
-            modelo.addColumn("ESTADO");
+            table.addColumn("DNI");
+            table.addColumn("NOMBRE");
+            table.addColumn("FECHA VENCIMIENTO");
+            table.addColumn("ESTADO");
 
             try {
                 while (rs.next()) {
@@ -179,7 +200,7 @@ public void verificarVto() {
                        
                     }
                     
-                    modelo.addRow(filas);
+                    table.addRow(filas);
                     
                 }
                 
@@ -207,6 +228,11 @@ public void verificarVto() {
         if(e.getSource() == m.btnPagos){
             
             cp.iniciar();
+        }
+        if (e.getSource() == m.acTabla) {
+
+            actualizarTabla();
+
         }
     }
 

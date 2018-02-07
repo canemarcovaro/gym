@@ -5,6 +5,11 @@
  */
 package Vista;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author JorgeA
@@ -14,8 +19,26 @@ public class Clientes extends javax.swing.JFrame {
     /**
      * Creates new form Clientes
      */
+    int x,y;
+    
     public Clientes() {
+        
         initComponents();
+        
+        //Cambiar icono ventana
+        
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/logo.png")).getImage());
+        
+        
+        //Agregar Imagen al frame
+        
+        ((JPanel)getContentPane()).setOpaque(false);
+        ImageIcon uno=new ImageIcon(this.getClass().getResource("/Imagenes/Plantilla_Cliente4.jpg"));
+        JLabel fondo= new JLabel();
+        fondo.setIcon(uno);
+        getLayeredPane().add(fondo,JLayeredPane.FRAME_CONTENT_LAYER);
+        fondo.setBounds(0,0,uno.getIconWidth(),uno.getIconHeight());
+        
     }
 
     /**
@@ -35,108 +58,131 @@ public class Clientes extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtNum = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtDirec = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        btnGuardar = new javax.swing.JButton();
         fecha = new com.toedter.calendar.JDateChooser();
-        btnSubir = new javax.swing.JButton();
         labFoto = new javax.swing.JLabel();
-        btnEdit = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         comboTar = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
+        txtDirec = new javax.swing.JTextField();
+        mover = new javax.swing.JLabel();
+        b_minimizar = new javax.swing.JButton();
         fechaIngreso = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
+        btnEdit = new javax.swing.JButton();
+        btnSubir = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
 
         jLabel3.setText("Fecha de nacimiento: ");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(840, 617));
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("DNI: ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
-        getContentPane().add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 141, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, 20));
+        getContentPane().add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 150, 20));
 
         jLabel2.setText("Nombre:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 50, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 50, 20));
 
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
             }
         });
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 140, -1));
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 150, 20));
 
         jLabel4.setText("Numero de telefono: ");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
-        getContentPane().add(txtNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 140, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, 20));
+        getContentPane().add(txtNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 150, 20));
 
         jLabel5.setText("Dirección:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
-
-        txtDirec.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDirecActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtDirec, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 140, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, 20));
 
         jLabel6.setText("E-mail:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
-        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 140, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, -1, 30));
+        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 150, 20));
 
-        btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 447, -1, -1));
-
+        fecha.setBackground(new java.awt.Color(204, 204, 204));
         fecha.setDateFormatString("yyyy-MM-dd");
-        getContentPane().add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 120, 140, -1));
-
-        btnSubir.setText("Cargar Imagen");
-        btnSubir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSubirActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSubir, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 302, -1, -1));
+        getContentPane().add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 150, 20));
 
         labFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(labFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(416, 43, 202, 241));
+        getContentPane().add(labFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(536, 125, 250, 300));
 
-        btnEdit.setText("Editar");
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 447, 84, -1));
-
-        btnCancel.setText("Cancelar");
+        btnCancel.setBorderPainted(false);
+        btnCancel.setContentAreaFilled(false);
+        btnCancel.setDefaultCapable(false);
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 447, 86, -1));
+        getContentPane().add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 20, 20));
 
         jLabel7.setText("Fecha Nacimiento:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, -1, 20));
 
         comboTar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(comboTar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 140, 20));
+        getContentPane().add(comboTar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 150, 30));
 
         jLabel8.setText("Selecccionar tarifa:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
-        getContentPane().add(fechaIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 140, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, -1, 30));
+        getContentPane().add(txtDirec, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 150, 20));
+
+        mover.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
+        mover.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                moverMouseDragged(evt);
+            }
+        });
+        mover.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                moverMousePressed(evt);
+            }
+        });
+        getContentPane().add(mover, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 30));
+
+        b_minimizar.setBorder(null);
+        b_minimizar.setBorderPainted(false);
+        b_minimizar.setContentAreaFilled(false);
+        b_minimizar.setDefaultCapable(false);
+        b_minimizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_minimizarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(b_minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 0, 20, 20));
+        getContentPane().add(fechaIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 460, 150, -1));
 
         jLabel9.setText("Fecha Ingreso:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, -1, -1));
+
+        btnEdit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnEdit.setText("GUARDAR CAMBIOS");
+        btnEdit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEdit.setFocusPainted(false);
+        getContentPane().add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 540, 200, 50));
+
+        btnSubir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnSubir.setText("CARGAR IMAGEN");
+        btnSubir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSubir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSubir.setFocusPainted(false);
+        getContentPane().add(btnSubir, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 440, 200, 50));
+
+        btnGuardar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnGuardar.setText("GUARDAR");
+        btnGuardar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setFocusPainted(false);
+        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 540, 200, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -145,31 +191,33 @@ public class Clientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
 
-    private void txtDirecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDirecActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDirecActionPerformed
-
-    private void btnSubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSubirActionPerformed
-
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditActionPerformed
-
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    private void b_minimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_minimizarActionPerformed
+
+        //Minimizar Ventana
+
+        this.setState(this.ICONIFIED);
+    }//GEN-LAST:event_b_minimizarActionPerformed
+
+    private void moverMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moverMousePressed
+         
+    x = evt.getX();
+    y = evt.getY();
+    }//GEN-LAST:event_moverMousePressed
+
+    private void moverMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moverMouseDragged
+     this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY()-y);
+    }//GEN-LAST:event_moverMouseDragged
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton b_minimizar;
     public javax.swing.JButton btnCancel;
     public javax.swing.JButton btnEdit;
     public javax.swing.JButton btnGuardar;
@@ -187,6 +235,7 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     public javax.swing.JLabel labFoto;
+    private javax.swing.JLabel mover;
     public javax.swing.JTextField txtDirec;
     public javax.swing.JTextField txtDni;
     public javax.swing.JTextField txtEmail;

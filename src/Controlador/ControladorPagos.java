@@ -26,6 +26,7 @@ public class ControladorPagos implements ActionListener {
     private Pagos p;
     private VistaPagos pp;
     DefaultTableModel modelo = new DefaultTableModel();
+    private boolean band = false;
 
     public ControladorPagos(Pagos p, VistaPagos pp) {
 
@@ -39,9 +40,13 @@ public class ControladorPagos implements ActionListener {
         pp.setTitle("Pagos");
         pp.setLocationRelativeTo(null);
         pp.setVisible(true);
+        
+        if(band == false){
         cargarTablaPagos();
+        band = true;
+        
     }
-
+    }
     public void cargarTablaPagos() {
 
         try {
@@ -146,7 +151,7 @@ public class ControladorPagos implements ActionListener {
                 try {
                     while (rs.next()) {
                        String resultado = rs.getString(1);
-                        pp.txtRes.setText(resultado);
+                        pp.txtRes.setText("$ "+resultado);
                         System.out.println(resultado);
                     }
                 } catch (SQLException ex) {

@@ -13,15 +13,10 @@ import Modelo.EntidadCuenta;
 import Modelo.EntidadTarifas;
 import Vista.Clientes;
 import Vista.MenuClientes;
-import com.sun.webkit.graphics.WCImage;
-import static com.sun.webkit.graphics.WCImage.getImage;
-import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
-import com.toedter.calendar.JDateChooser;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -35,11 +30,9 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
@@ -47,9 +40,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
-import javax.swing.SwingUtilities;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -70,12 +60,12 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
     TableRowSorter trs;
     private int filaEditar;
     private int numFila;
-    boolean band = true;
+    boolean band = false;
     private Cuenta cu;
     private EntidadTarifas et;
     private EntidadCuenta ec;
 
-    public ControladorClientes(Clientes c, Cliente cl, Entidad en, MenuClientes mc, Cuenta cu, EntidadTarifas et,EntidadCuenta ec) {
+    public ControladorClientes(Clientes c, Cliente cl, Entidad en, MenuClientes mc, Cuenta cu, EntidadTarifas et, EntidadCuenta ec) {
         this.c = c;
         this.cl = cl;
         this.cu = cu;
@@ -85,15 +75,15 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
         this.ec = ec;
         this.c.btnGuardar.addActionListener(this);
         this.mc.btnNuevo.addActionListener(this);
-        this.c.btnSubir.addActionListener(this);
+        this.c.btnEdit.addActionListener(this);
         this.mc.txtBuscar.addKeyListener(this);
         //this.mc.jcomboBuscar.addKeyListener(this);
         this.mc.btnMod.addActionListener(this);
-        this.c.btnEdit.addActionListener(this);
         this.mc.tabla1.addMouseListener(this);
         this.mc.btnElim.addActionListener(this);
         this.c.btnCancel.addActionListener(this);
         this.c.comboTar.addActionListener(this);
+        this.c.btnSubir.addActionListener(this);
 
     }
 
@@ -105,8 +95,6 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
         Date fechaVal = Calendar.getInstance().getTime();
         c.fechaIngreso.setDate(fechaVal);
         setComboTar();
-        
-        
 
     }
 
@@ -115,36 +103,47 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
         mc.setTitle("Menu Clientes");
         mc.setLocationRelativeTo(null);
         mc.setVisible(true);
-        
-        
 
         //Fixed, se incorporó bandera para solucionar problema de Dispose con la Vista MenuClientes...
-        if (band == true) {
+        if (band == false) {
             cargarTabla();
-            band = false;
+            band = true;
         }
 
     }
-    public void calcularFecha(){
-        
+
+    public int filtrarTarifa() {
+
+        int i = 0;
+        String str = c.comboTar.getSelectedItem().toString();
+        String[] str1 = str.split(" ");
+        String str2 = str1[0];
+        int num = 0;
+        num = Integer.parseInt(str2);
+
+        System.out.println(num);
+
+        return num;
+
+    }
+
+    public void calcularFecha() {
+
         Date fechaVal = c.fechaIngreso.getDate();
-      
+
         Calendar fechaVto = Calendar.getInstance();
-  
+
         fechaVto.setTime(new java.sql.Date(c.fechaIngreso.getDate().getTime()));
         fechaVto.add(Calendar.DATE, 30);
-        
-     
+
         cu.setFechaVal(new java.sql.Date(fechaVal.getTime()));
-        
+
         cu.setFechaVto(new java.sql.Date(fechaVto.getTimeInMillis()));
-        
 
         System.out.println(cu.getFechaVal());
-        
-    
-        
+
     }
+
     public void setComboTar() {
 
         PreparedStatement ps = null;
@@ -157,7 +156,7 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ControladorClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "SELECT id FROM tarifas";
+        String sql = "SELECT id, nombre, precio FROM tarifas";
         try {
             ps = con.prepareStatement(sql);
         } catch (SQLException ex) {
@@ -166,10 +165,10 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
         try {
             rs = ps.executeQuery();
             c.comboTar.removeAllItems();
-            while(rs.next()){
-                c.comboTar.addItem(rs.getString(1) );
+            while (rs.next()) {
+                c.comboTar.addItem(rs.getString(1) + " - " + rs.getString(2) + " : $" + rs.getString(3));
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadTarifas.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -213,12 +212,27 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if (e.getSource() == mc.btnNuevo) {
-            c.btnGuardar.setVisible(true);
+            c.btnEdit.setVisible(true);
 
             iniciarClientes();
-            //mc.dispose();
+
             c.btnEdit.setVisible(false);
+
+            c.txtDirec.setText(null);
+            c.txtDni.setText(null);
+            c.txtEmail.setText(null);
+            c.txtNombre.setText(null);
+            c.txtNum.setText(null);
+            c.comboTar.setSelectedIndex(0);
+
+            c.fecha.setDate(Calendar.getInstance().getTime());
+            c.fechaIngreso.setDate(Calendar.getInstance().getTime());
+            Image image1 = new ImageIcon(getClass().getResource("/Imagenes/perfil2.png")).getImage();
+            image1.getScaledInstance(250, 300, Image.SCALE_DEFAULT);
+            c.labFoto.setIcon(new ImageIcon(image1));
+
         }
         if (e.getSource() == c.btnGuardar) {
 
@@ -235,16 +249,11 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
             cl.setRuta(foto);
             //Atributos de cuenta:
             cu.setDniCliente(Integer.parseInt(c.txtDni.getText()));
-            cu.setIdTarifa(Integer.parseInt((String)c.comboTar.getSelectedItem()));
-         
+            cu.setIdTarifa(filtrarTarifa());
+
             System.out.println(c.comboTar.getSelectedItem());
-            
+
             calcularFecha();
-            
-            
-            
-            
-            
 
             try {
                 if (en.registrar(cl) && ec.registrar(cu)) {
@@ -260,7 +269,6 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
                 Logger.getLogger(ControladorClientes.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            
             c.dispose();
 
         }
@@ -274,18 +282,24 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
 
                 file = archivo.getSelectedFile();
                 foto = String.valueOf(file);
+
                 Toolkit toolkit = Toolkit.getDefaultToolkit();
                 Image image1 = toolkit.getImage(foto);
-                image1 = image1.getScaledInstance(202, 241, Image.SCALE_DEFAULT);
+                image1 = image1.getScaledInstance(250, 300, Image.SCALE_DEFAULT);
                 c.labFoto.setIcon(new ImageIcon(image1));
 
             }
         }
         if (e.getSource() == mc.btnMod) {
+
+            c.btnGuardar.setVisible(false);
             c.btnEdit.setVisible(true);
+
             filaEditar = mc.tabla1.getSelectedRow();
             numFila = mc.tabla1.getSelectedRowCount();
+
             if (filaEditar >= 0 && numFila == 1) {
+
                 iniciarClientes();
                 c.txtDni.setText(String.valueOf(mc.tabla1.getValueAt(filaEditar, 0)));
                 c.txtDni.setEditable(false);
@@ -297,7 +311,7 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
 
                 try {
                     ImageIcon image1 = en.traerFoto((int) mc.tabla1.getValueAt(filaEditar, 0));
-                    Icon icono = new ImageIcon(image1.getImage().getScaledInstance(202, 241, Image.SCALE_DEFAULT));
+                    Icon icono = new ImageIcon(image1.getImage().getScaledInstance(250, 300, Image.SCALE_DEFAULT));
 
                     c.labFoto.setIcon(icono);
 
@@ -308,12 +322,13 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
                 } catch (IOException ex) {
                     Logger.getLogger(ControladorClientes.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                c.btnGuardar.setVisible(false);
 
             }
 
         }
         if (e.getSource() == c.btnEdit) {
+
+            c.txtDni.setEditable(true);
 
             SimpleDateFormat formatter = new SimpleDateFormat("aa/MM/dddd");
 
@@ -405,13 +420,14 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
             int filaEditar = mc.tabla1.getSelectedRow();
             int numFila = mc.tabla1.getSelectedRowCount();
             ImageIcon image1 = null;
+
+            Image image2 = new ImageIcon(getClass().getResource("/Imagenes/perfil2.png")).getImage();
+            image2.getScaledInstance(250, 300, Image.SCALE_DEFAULT);
+            mc.labFoto2.setIcon(new ImageIcon(image2));
+
             try {
                 image1 = en.traerFoto((int) mc.tabla1.getValueAt(filaEditar, 0));
-            } catch (SQLException ex) {
-                Logger.getLogger(ControladorClientes.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ControladorClientes.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
+            } catch (SQLException | ClassNotFoundException | IOException ex) {
                 Logger.getLogger(ControladorClientes.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (image1 != null) {
