@@ -62,7 +62,7 @@ public class Menu extends javax.swing.JFrame {
         btnTarifas = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaVto = new javax.swing.JTable();
         b_cerrar = new javax.swing.JButton();
         b_minimizar = new javax.swing.JButton();
         move = new javax.swing.JLabel();
@@ -98,7 +98,7 @@ public class Menu extends javax.swing.JFrame {
         jButton2.setDefaultCapable(false);
         jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/b_cuentas_press.png"))); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaVto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -138,7 +138,7 @@ public class Menu extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaVto);
 
         b_cerrar.setBorder(null);
         b_cerrar.setBorderPainted(false);
@@ -277,7 +277,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel move;
+    public javax.swing.JTable tablaVto;
     // End of variables declaration//GEN-END:variables
 }

@@ -227,8 +227,8 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
             cl.setRuta(foto);
             //Atributos de cuenta:
             cu.setDniCliente(Integer.parseInt(c.txtDni.getText()));
-            //cu.setIdTarifa(Integer.parseInt((String)c.comboTar.getSelectedItem()));
-            cu.setIdTarifa(55);
+            cu.setIdTarifa(Integer.parseInt((String)c.comboTar.getSelectedItem()));
+         
             System.out.println(c.comboTar.getSelectedItem());
             
             calcularFecha();

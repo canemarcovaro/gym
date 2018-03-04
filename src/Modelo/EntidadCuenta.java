@@ -21,7 +21,7 @@ public class EntidadCuenta extends Conexion {
         PreparedStatement ps = null;
         try {
             Connection con = getConect();
-            String sql = "INSERT INTO cuentas (id,dniCliente,idTarifa,saldoAcredor,saldoDeudor,fechaVto,fechaVal)  VALUES (NULL,?,?,?,?,?,?)";
+            String sql = "INSERT INTO cuentas (id,dniCliente,idTarifa,saldoAcredor,saldoDeudor,fechaVto,fechaVal,proxVto)  VALUES (NULL,?,?,?,?,?,?,false)";
             try {
                 ps = con.prepareStatement(sql);
                 
@@ -31,6 +31,7 @@ public class EntidadCuenta extends Conexion {
                 ps.setDouble(4, 55);
                 ps.setDate(5, c.getFechaVto());
                 ps.setDate(6, c.getFechaVal());
+               
 
                 ps.execute();
                 con.close();
