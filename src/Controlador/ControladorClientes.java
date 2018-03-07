@@ -16,6 +16,7 @@ import Vista.MenuClientes;
 import com.sun.webkit.graphics.WCImage;
 import static com.sun.webkit.graphics.WCImage.getImage;
 import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
+import com.toedter.calendar.JDateChooser;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -101,6 +102,8 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
         c.setTitle("Clientes");
         c.setLocationRelativeTo(null);
         c.setVisible(true);
+        Date fechaVal = Calendar.getInstance().getTime();
+        c.fechaIngreso.setDate(fechaVal);
         setComboTar();
         
         
@@ -112,6 +115,8 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
         mc.setTitle("Menu Clientes");
         mc.setLocationRelativeTo(null);
         mc.setVisible(true);
+        
+        
 
         //Fixed, se incorporó bandera para solucionar problema de Dispose con la Vista MenuClientes...
         if (band == true) {
@@ -122,13 +127,16 @@ public class ControladorClientes implements ActionListener, KeyListener, MouseLi
     }
     public void calcularFecha(){
         
-        Calendar fechaVal = Calendar.getInstance();
+        Date fechaVal = c.fechaIngreso.getDate();
       
         Calendar fechaVto = Calendar.getInstance();
+  
+        fechaVto.setTime(new java.sql.Date(c.fechaIngreso.getDate().getTime()));
         fechaVto.add(Calendar.DATE, 30);
         
      
-        cu.setFechaVal(new java.sql.Date(fechaVal.getTimeInMillis()));
+        cu.setFechaVal(new java.sql.Date(fechaVal.getTime()));
+        
         cu.setFechaVto(new java.sql.Date(fechaVto.getTimeInMillis()));
         
 

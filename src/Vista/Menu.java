@@ -60,7 +60,7 @@ public class Menu extends javax.swing.JFrame {
 
         btnClientes = new javax.swing.JButton();
         btnTarifas = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnPagos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaVto = new javax.swing.JTable();
         b_cerrar = new javax.swing.JButton();
@@ -91,12 +91,12 @@ public class Menu extends javax.swing.JFrame {
         btnTarifas.setDefaultCapable(false);
         btnTarifas.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/b_tarifas_press.png"))); // NOI18N
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/b_cuentas.png"))); // NOI18N
-        jButton2.setBorder(null);
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setDefaultCapable(false);
-        jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/b_cuentas_press.png"))); // NOI18N
+        btnPagos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/b_cuentas.png"))); // NOI18N
+        btnPagos.setBorder(null);
+        btnPagos.setBorderPainted(false);
+        btnPagos.setContentAreaFilled(false);
+        btnPagos.setDefaultCapable(false);
+        btnPagos.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/b_cuentas_press.png"))); // NOI18N
 
         tablaVto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -194,7 +194,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
+                    .addComponent(btnPagos)
                     .addComponent(btnTarifas, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnClientes))
                 .addGap(121, 121, 121))
@@ -220,7 +220,7 @@ public class Menu extends javax.swing.JFrame {
                         .addGap(84, 84, 84)
                         .addComponent(btnTarifas)
                         .addGap(98, 98, 98)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(94, 94, 94))))
         );
 
@@ -273,8 +273,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton b_cerrar;
     private javax.swing.JButton b_minimizar;
     public javax.swing.JButton btnClientes;
+    public javax.swing.JButton btnPagos;
     public javax.swing.JButton btnTarifas;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel move;

@@ -7,6 +7,7 @@ package Main;
 
 import Controlador.ControladorClientes;
 import Controlador.ControladorMenu;
+import Controlador.ControladorPagos;
 import Controlador.ControladorTarifas;
 import Modelo.Cliente;
 import Modelo.Conexion;
@@ -14,11 +15,13 @@ import Modelo.Cuenta;
 import Modelo.Entidad;
 import Modelo.EntidadCuenta;
 import Modelo.EntidadTarifas;
+import Modelo.Pagos;
 import Modelo.Tarifa;
 import Vista.Clientes;
 import Vista.Menu;
 import Vista.MenuClientes;
 import Vista.Tarifas;
+import Vista.VistaPagos;
 
 
 /**
@@ -41,8 +44,12 @@ public class Main {
         ControladorTarifas ct = new ControladorTarifas(tf,et,ta);
         Cuenta cu = new Cuenta();
         EntidadCuenta ec = new EntidadCuenta();
+        Pagos p = new Pagos();
+        VistaPagos vp = new VistaPagos();
+        
         ControladorClientes col = new ControladorClientes(cl,c1,en,mc,cu,et,ec);
-        ControladorMenu com = new ControladorMenu(col,m,ct);
+        ControladorPagos cp = new ControladorPagos(p,vp);
+        ControladorMenu com = new ControladorMenu(col,m,ct,cp);
         
         com.iniciar();
       

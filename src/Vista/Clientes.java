@@ -47,6 +47,8 @@ public class Clientes extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         comboTar = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
+        fechaIngreso = new com.toedter.calendar.JDateChooser();
+        jLabel9 = new javax.swing.JLabel();
 
         jLabel3.setText("Fecha de nacimiento: ");
 
@@ -55,7 +57,7 @@ public class Clientes extends javax.swing.JFrame {
 
         jLabel1.setText("DNI: ");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
-        getContentPane().add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 38, 141, -1));
+        getContentPane().add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 141, -1));
 
         jLabel2.setText("Nombre:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 50, -1));
@@ -65,11 +67,11 @@ public class Clientes extends javax.swing.JFrame {
                 txtNombreActionPerformed(evt);
             }
         });
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 76, 119, -1));
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 140, -1));
 
         jLabel4.setText("Numero de telefono: ");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
-        getContentPane().add(txtNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 108, -1));
+        getContentPane().add(txtNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 140, -1));
 
         jLabel5.setText("Dirección:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
@@ -79,11 +81,11 @@ public class Clientes extends javax.swing.JFrame {
                 txtDirecActionPerformed(evt);
             }
         });
-        getContentPane().add(txtDirec, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 108, -1));
+        getContentPane().add(txtDirec, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 140, -1));
 
         jLabel6.setText("E-mail:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
-        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 99, -1));
+        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 140, -1));
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +96,7 @@ public class Clientes extends javax.swing.JFrame {
         getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 447, -1, -1));
 
         fecha.setDateFormatString("yyyy-MM-dd");
-        getContentPane().add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 120, 119, -1));
+        getContentPane().add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 120, 140, -1));
 
         btnSubir.setText("Cargar Imagen");
         btnSubir.addActionListener(new java.awt.event.ActionListener() {
@@ -127,10 +129,14 @@ public class Clientes extends javax.swing.JFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
         comboTar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(comboTar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 90, 20));
+        getContentPane().add(comboTar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 140, 20));
 
         jLabel8.setText("Selecccionar tarifa:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
+        getContentPane().add(fechaIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 140, -1));
+
+        jLabel9.setText("Fecha Ingreso:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -170,6 +176,7 @@ public class Clientes extends javax.swing.JFrame {
     public javax.swing.JButton btnSubir;
     public javax.swing.JComboBox<String> comboTar;
     public com.toedter.calendar.JDateChooser fecha;
+    public com.toedter.calendar.JDateChooser fechaIngreso;
     javax.swing.JLabel jLabel1;
     javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
@@ -178,6 +185,7 @@ public class Clientes extends javax.swing.JFrame {
     javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     public javax.swing.JLabel labFoto;
     public javax.swing.JTextField txtDirec;
     public javax.swing.JTextField txtDni;

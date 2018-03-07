@@ -33,13 +33,16 @@ public class ControladorMenu implements ActionListener {
     private Menu m;
     private ControladorTarifas ct;
     DefaultTableModel modelo = new DefaultTableModel();
+    private ControladorPagos cp;
 
-    public ControladorMenu(ControladorClientes cc, Menu m, ControladorTarifas ct) {
+    public ControladorMenu(ControladorClientes cc, Menu m, ControladorTarifas ct,ControladorPagos cp) {
         this.cc = cc;
+        this.cp = cp;
         this.m = m;
         this.m.btnClientes.addActionListener(this);
         this.m.btnTarifas.addActionListener(this);
         this.ct = ct;
+        this.m.btnPagos.addActionListener(this);
     }
 
     public void iniciar() {
@@ -52,10 +55,10 @@ public class ControladorMenu implements ActionListener {
 
     }
 
-    public void verificarVto() {
-        Calendar fecha = Calendar.getInstance();
-        fecha.add(Calendar.DATE, -5);
-        Date fecha2 = new java.sql.Date(fecha.getTimeInMillis());
+public void verificarVto() {
+        
+        Calendar fechaHoy = Calendar.getInstance();
+        
 
         try {
 
@@ -82,18 +85,45 @@ public class ControladorMenu implements ActionListener {
             }
 
             while (rs.next()) {
-
-                if (rs.getDate(1).compareTo(fecha2) >= 0) {
+                
+                Calendar fechaVto2 = Calendar.getInstance();
+                Calendar fechaVto = Calendar.getInstance();
+                
+                fechaVto.setTime(rs.getDate(1));
+                fechaVto2.setTime(rs.getDate(1));
+                
+                fechaVto.add(Calendar.DATE, -5);
+                
+                if(fechaHoy.after(fechaVto) && fechaHoy.before(fechaVto2)){
+  
                     String sql2 = "UPDATE cuentas SET proxVto= true WHERE id=" + rs.getInt(2);
+                    String sql3 = "UPDATE cuentas SET diasRestantes = 'CERCANO' WHERE id=" + rs.getInt(2);
+                    
                     ps = con.prepareStatement(sql2);
                     ps.execute();
+                    ps = con.prepareStatement(sql3);
+                    ps.execute();
+                 }   
+                    
+                 if(fechaHoy.equals(fechaVto2) || fechaHoy.after(fechaVto2)){
+                        
+                    String sql4 = "UPDATE cuentas SET proxVto= true WHERE id=" + rs.getInt(2);
+                    String sql5 = "UPDATE cuentas SET diasRestantes = 'VENCIDO' WHERE id=" + rs.getInt(2);
+                    
+                    ps = con.prepareStatement(sql4);
+                    ps.execute();
+                    ps = con.prepareStatement(sql5);
+                    ps.execute();
+                  
+                    
                 }
-
+                
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(ControladorMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
 
     }
 
@@ -106,7 +136,9 @@ public class ControladorMenu implements ActionListener {
             ResultSet rs = null;
             Conexion conn = new Conexion();
             Connection con = conn.getConect();
-            String sql = "SELECT a.nombre, a.dni, b.fechaVto FROM cliente a, cuentas b WHERE a.dni = b.dniCliente and b.proxVto = true ";
+
+            String sql = "SELECT a.dni, a.nombre, b.fechaVto, b.diasRestantes FROM cliente a, cuentas b WHERE a.dni = b.dniCliente and b.proxVto = true ";
+
             try {
                 ps = con.prepareStatement(sql);
             } catch (SQLException ex) {
@@ -117,38 +149,45 @@ public class ControladorMenu implements ActionListener {
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
-
             ResultSetMetaData rsmd = null;
             try {
                 rsmd = rs.getMetaData();
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
+
             int cantCol = 0;
+
             try {
                 cantCol = rsmd.getColumnCount();
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
+
             modelo.addColumn("DNI");
             modelo.addColumn("NOMBRE");
             modelo.addColumn("FECHA VENCIMIENTO");
+            modelo.addColumn("ESTADO");
+
             try {
                 while (rs.next()) {
+
+
                     Object[] filas = new Object[cantCol];
                     for (int i = 0; i < cantCol; i++) {
-                        filas[i] = rs.getObject(i + 1);
-
+                    filas[i] = rs.getObject(i + 1);
+                       
                     }
+                    
                     modelo.addRow(filas);
-
+                    
                 }
+                
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ControladorClientes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -164,6 +203,10 @@ public class ControladorMenu implements ActionListener {
         }
         if (e.getSource() == m.btnTarifas) {
             ct.iniciarTarifas();
+        }
+        if(e.getSource() == m.btnPagos){
+            
+            cp.iniciar();
         }
     }
 
