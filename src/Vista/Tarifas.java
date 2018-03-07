@@ -36,10 +36,11 @@ public class Tarifas extends javax.swing.JFrame {
         btnGuardarTar = new javax.swing.JButton();
         btnModTar = new javax.swing.JButton();
         btnElemTar = new javax.swing.JButton();
-        btnNuevoTar = new javax.swing.JButton();
         txtId = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JButton();
+        btnNuevoTar = new javax.swing.JButton();
+        btnVol = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,14 +81,21 @@ public class Tarifas extends javax.swing.JFrame {
 
         btnElemTar.setText("Eliminar");
 
-        btnNuevoTar.setText("Nuevo");
-
         jLabel3.setText("ID:");
 
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarActionPerformed(evt);
+            }
+        });
+
+        btnNuevoTar.setText("Nuevo");
+
+        btnVol.setText("volver");
+        btnVol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolActionPerformed(evt);
             }
         });
 
@@ -108,8 +116,8 @@ public class Tarifas extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtNombreTar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
-                                .addComponent(btnNuevoTar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(52, 52, 52)
+                                .addComponent(btnNuevoTar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnConfirmar))
                             .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -119,7 +127,9 @@ public class Tarifas extends javax.swing.JFrame {
                         .addGap(39, 39, 39)
                         .addComponent(btnModTar)
                         .addGap(46, 46, 46)
-                        .addComponent(btnElemTar)))
+                        .addComponent(btnElemTar)
+                        .addGap(40, 40, 40)
+                        .addComponent(btnVol)))
                 .addContainerGap(168, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -135,8 +145,8 @@ public class Tarifas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombreTar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(btnNuevoTar)
-                    .addComponent(btnConfirmar))
+                    .addComponent(btnConfirmar)
+                    .addComponent(btnNuevoTar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,7 +155,8 @@ public class Tarifas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardarTar)
                     .addComponent(btnModTar)
-                    .addComponent(btnElemTar))
+                    .addComponent(btnElemTar)
+                    .addComponent(btnVol))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
 
@@ -157,7 +168,12 @@ public class Tarifas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPrecioActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void btnVolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolActionPerformed
+        
+    }//GEN-LAST:event_btnVolActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,6 +186,7 @@ public class Tarifas extends javax.swing.JFrame {
     public javax.swing.JButton btnGuardarTar;
     public javax.swing.JButton btnModTar;
     public javax.swing.JButton btnNuevoTar;
+    public javax.swing.JButton btnVol;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
